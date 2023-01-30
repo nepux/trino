@@ -23,7 +23,9 @@ public class LogicalExpression
 {
     public enum Operator
     {
-        AND;
+        AND,
+        OR,
+        /**/;
     }
 
     private final Operator operator;
@@ -32,9 +34,7 @@ public class LogicalExpression
 
     public LogicalExpression(Operator operator, SparkExpression left, SparkExpression right)
     {
-        requireNonNull(operator, "operator is null");
-
-        this.operator = operator;
+        this.operator = requireNonNull(operator, "operator is null");
         this.left = requireNonNull(left, "left is null");
         this.right = requireNonNull(right, "right is null");
     }

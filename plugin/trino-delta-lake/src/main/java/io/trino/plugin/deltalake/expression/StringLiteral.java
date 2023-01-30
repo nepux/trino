@@ -64,7 +64,7 @@ public class StringLiteral
     public String toString()
     {
         return toStringHelper(this)
-                .add("value", value)
+                .addValue(value)
                 .toString();
     }
 }

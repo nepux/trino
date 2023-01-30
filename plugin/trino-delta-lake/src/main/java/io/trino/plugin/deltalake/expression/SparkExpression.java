@@ -15,10 +15,7 @@ package io.trino.plugin.deltalake.expression;
 
 public abstract class SparkExpression
 {
-    protected <R, C> R accept(SparkExpressionTreeVisitor<R, C> visitor, C context)
-    {
-        return visitor.visitExpression(this, context);
-    }
+    abstract <R, C> R accept(SparkExpressionTreeVisitor<R, C> visitor, C context);
 
     @Override
     public abstract String toString();

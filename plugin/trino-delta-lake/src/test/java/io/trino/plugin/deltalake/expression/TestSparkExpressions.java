@@ -99,12 +99,32 @@ public class TestSparkExpressions
     }
 
     @Test
+    public void testOr()
+    {
+        assertExpressionTranslates("a > 1 OR a < 10", "((\"a\" > 1) OR (\"a\" < 10))");
+    }
+
+    @Test
     public void testIdentifier()
     {
         // Spark uses ` for identifiers
+        assertExpressionTranslates("`a` = 1", "(\"a\" = 1)");
+        assertExpressionTranslates("`UPPERCASE` = 1", "(\"UPPERCASE\" = 1)");
         assertExpressionTranslates("`123` = 1", "(\"123\" = 1)");
+
+        // Special characters
         assertExpressionTranslates("`a.dot` = 1", "(\"a.dot\" = 1)");
         assertExpressionTranslates("`a``backtick` = 1", "(\"a`backtick\" = 1)");
+        assertExpressionTranslates("`a,comma` = 1", "(\"a,comma\" = 1)");
+        assertExpressionTranslates("`a;semicolon` = 1", "(\"a;semicolon\" = 1)");
+        assertExpressionTranslates("`a{}braces` = 1", "(\"a{}braces\" = 1)");
+        assertExpressionTranslates("`a()parenthesis` = 1", "(\"a()parenthesis\" = 1)");
+        assertExpressionTranslates("`a\nnewline` = 1", "(\"a\nnewline\" = 1)");
+        assertExpressionTranslates("`a\ttab` = 1", "(\"a\ttab\" = 1)");
+        assertExpressionTranslates("`a.dot` = 1", "(\"a.dot\" = 1)");
+        assertExpressionTranslates("`a=equal` = 1", "(\"a=equal\" = 1)");
+
+        assertParseFailure("`a`b` = 1");
     }
 
     @Test
@@ -125,12 +145,6 @@ public class TestSparkExpressions
     public void testUnsupportedNot()
     {
         assertParseFailure("NOT a = 1");
-    }
-
-    @Test
-    public void testUnsupportedOr()
-    {
-        assertParseFailure("a = 1 OR a = 2");
     }
 
     @Test

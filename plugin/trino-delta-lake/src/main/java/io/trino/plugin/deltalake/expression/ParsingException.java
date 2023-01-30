@@ -13,8 +13,6 @@
  */
 package io.trino.plugin.deltalake.expression;
 
-import org.antlr.v4.runtime.RecognitionException;
-
 public class ParsingException
         extends RuntimeException
 {
@@ -23,7 +21,7 @@ public class ParsingException
         this(message, null);
     }
 
-    public ParsingException(String message, RecognitionException cause)
+    public ParsingException(String message, Throwable cause)
     {
         super(message, cause);
     }

@@ -26,12 +26,7 @@ public class LongLiteral
     public LongLiteral(String value)
     {
         requireNonNull(value, "value is null");
-        try {
-            this.value = Long.parseLong(value);
-        }
-        catch (NumberFormatException e) {
-            throw new ParsingException("Invalid numeric literal: " + value);
-        }
+        this.value = Long.parseLong(value);
     }
 
     public long getValue()
@@ -69,7 +64,7 @@ public class LongLiteral
     public String toString()
     {
         return toStringHelper(this)
-                .add("value", value)
+                .addValue(value)
                 .toString();
     }
 }

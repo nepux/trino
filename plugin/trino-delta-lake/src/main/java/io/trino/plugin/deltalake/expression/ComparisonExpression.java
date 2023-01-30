@@ -21,6 +21,29 @@ import static java.util.Objects.requireNonNull;
 public class ComparisonExpression
         extends SparkExpression
 {
+    public enum Operator
+    {
+        EQUAL("="),
+        NOT_EQUAL("<>"),
+        LESS_THAN("<"),
+        LESS_THAN_OR_EQUAL("<="),
+        GREATER_THAN(">"),
+        GREATER_THAN_OR_EQUAL(">="),
+        /**/;
+
+        private final String value;
+
+        Operator(String value)
+        {
+            this.value = value;
+        }
+
+        public String getValue()
+        {
+            return value;
+        }
+    }
+
     private final Operator operator;
     private final SparkExpression left;
     private final SparkExpression right;
@@ -87,28 +110,5 @@ public class ComparisonExpression
                 .add("left", left)
                 .add("right", right)
                 .toString();
-    }
-
-    public enum Operator
-    {
-        EQUAL("="),
-        NOT_EQUAL("<>"),
-        LESS_THAN("<"),
-        LESS_THAN_OR_EQUAL("<="),
-        GREATER_THAN(">"),
-        GREATER_THAN_OR_EQUAL(">="),
-        /**/;
-
-        private final String value;
-
-        Operator(String value)
-        {
-            this.value = value;
-        }
-
-        public String getValue()
-        {
-            return value;
-        }
     }
 }

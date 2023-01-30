@@ -15,7 +15,6 @@ package io.trino.plugin.deltalake.expression;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Strings.isNullOrEmpty;
 
 public class Identifier
         extends SparkExpression
@@ -24,7 +23,7 @@ public class Identifier
 
     public Identifier(String value)
     {
-        checkArgument(!isNullOrEmpty(value), "value is null or empty");
+        checkArgument(!value.isEmpty(), "value is empty");
         this.value = value;
     }
 
@@ -43,7 +42,7 @@ public class Identifier
     public String toString()
     {
         return toStringHelper(this)
-                .add("value", value)
+                .addValue(value)
                 .toString();
     }
 }

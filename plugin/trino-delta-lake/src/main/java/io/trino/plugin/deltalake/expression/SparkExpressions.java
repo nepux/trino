@@ -13,6 +13,7 @@
  */
 package io.trino.plugin.deltalake.expression;
 
+import com.google.common.annotations.VisibleForTesting;
 import io.trino.spi.TrinoException;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStreams;
@@ -51,9 +52,15 @@ public final class SparkExpressions
         }
     }
 
-    private static SparkExpression createExpression(String expressionPattern)
+    @VisibleForTesting
+    static SparkExpression createExpression(String expressionPattern)
     {
-        return (SparkExpression) invokeParser(expressionPattern, SparkExpressionParser::standaloneExpression);
+        try {
+            return (SparkExpression) invokeParser(expressionPattern, SparkExpressionParser::standaloneExpression);
+        }
+        catch (Exception e) {
+            throw new ParsingException("Cannot parse Spark expression: " + expressionPattern);
+        }
     }
 
     private static Object invokeParser(String input, Function<SparkExpressionParser, ParserRuleContext> parseFunction)

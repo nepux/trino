@@ -16,9 +16,4 @@ package io.trino.plugin.deltalake.expression;
 public abstract class Literal
         extends SparkExpression
 {
-    @Override
-    public <R, C> R accept(SparkExpressionTreeVisitor<R, C> visitor, C context)
-    {
-        return visitor.visitLiteral(this, context);
-    }
 }

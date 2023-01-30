@@ -27,8 +27,9 @@ expression
     ;
 
 booleanExpression
-    : valueExpression predicate[$valueExpression.ctx]?  #predicated
-    | booleanExpression AND booleanExpression           #and
+    : valueExpression predicate[$valueExpression.ctx]?   #predicated
+    | left=booleanExpression AND right=booleanExpression #and
+    | left=booleanExpression OR right=booleanExpression #or
     ;
 
 // TODO: Support LIKE clause and function calls
@@ -73,6 +74,7 @@ number
     ;
 
 AND: 'AND';
+OR: 'OR';
 FALSE: 'FALSE';
 TRUE: 'TRUE';
 
