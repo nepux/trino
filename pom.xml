@@ -57,6 +57,7 @@
         <dep.joda.version>2.12.2</dep.joda.version>
         <dep.jsonwebtoken.version>0.11.2</dep.jsonwebtoken.version>
         <dep.oracle.version>19.3.0.0</dep.oracle.version>
+        <dep.exasol.version>7.1.17</dep.exasol.version>
         <dep.drift.version>1.14</dep.drift.version>
         <dep.tempto.version>191</dep.tempto.version>
         <dep.gcs.version>2.2.8</dep.gcs.version>
@@ -160,6 +161,7 @@
         <module>plugin/trino-mysql</module>
         <module>plugin/trino-mysql-event-listener</module>
         <module>plugin/trino-oracle</module>
+        <module>plugin/trino-exasol</module>
         <module>plugin/trino-password-authenticators</module>
         <module>plugin/trino-phoenix5</module>
         <module>plugin/trino-pinot</module>
